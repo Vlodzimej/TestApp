@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace TestApp
@@ -17,7 +18,7 @@ namespace TestApp
         public void RunTest()
         {
             int nr = 0;
-            Console.WriteLine($"Test {path}");
+            Console.WriteLine($"Test {path} {task.Title}");
 
             while (true)
             {
@@ -33,19 +34,27 @@ namespace TestApp
             }
         }
 
-        public bool RunTest(string inFile, string outFile)
+        public string RunTest(string inFile, string outFile)
         {
+            var watch = new Stopwatch();
             try
             {
                 string[] data = File.ReadAllLines(inFile);
                 string expect = File.ReadAllText(outFile).Trim();
+
+                watch.Start();
+
                 string actual = task.Run(data);
-                return actual == expect;
+
+                watch.Stop();
+
+
+                return $"{(actual == expect)} {watch.ElapsedMilliseconds} ms";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                return "Failed";
             }
         }
     }

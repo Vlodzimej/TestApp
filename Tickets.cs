@@ -5,6 +5,7 @@ namespace TestApp
 {
     class Tickets : ITask
     {
+        public string Title { get => "Кол-во символов"; }
         public string Run(string[] data)
         {
             /* Кол-во знаков */
