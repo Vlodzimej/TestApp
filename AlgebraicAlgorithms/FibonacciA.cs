@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class FibonacciA : ITask
     {
-        public string Title { get => "4a. Через рекурсию"; }
+        public string Title { get => "2a. Через рекурси"; }
         public string Run(string[] data)
         {
             var n = Convert.ToInt32(data[0]);

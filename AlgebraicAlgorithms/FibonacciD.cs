@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class FibonacciD : ITask
     {
-        public string Title { get => "4d. Через умножение матриц"; }
+        public string Title { get => "2d. Через умножение матриц"; }
         public string Run(string[] data)
         {
             var n = Convert.ToInt32(data[0]);

@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class PowerA : ITask
     {
-        public string Title { get => "2a. Итеративный (n умножений)"; }
+        public string Title { get => "1a. Итеративный (n умножений"; }
         public string Run(string[] data)
         {
             var a = Convert.ToDouble(data[0]);

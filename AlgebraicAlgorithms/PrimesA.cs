@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class PrimesA : ITask
     {
-        public string Title { get => "2a. Итеративный (n умножений)"; }
+        public string Title { get => "3a. Итеративный (n умножений)"; }
         public string Run(string[] data)
         {
             var n = Convert.ToInt64(data[0]);

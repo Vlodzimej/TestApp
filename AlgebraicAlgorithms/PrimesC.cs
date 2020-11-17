@@ -5,7 +5,7 @@ namespace TestApp
 {
     public class PrimesC : ITask
     {
-        public string Title { get => "3a. Через перебор делителей. Решето Эратосфена"; }
+        public string Title { get => "3с. Через перебор делителей. Решето Эратосфена"; }
         public string Run(string[] data)
         {
             var n = Convert.ToInt64(data[0]);

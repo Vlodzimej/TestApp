@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class PowerB : ITask
     {
-        public string Title { get => "2b. Через степень двойки с домножением"; }
+        public string Title { get => "1b. Через степень двойки с домножением"; }
         public string Run(string[] data)
         {
             var a = Convert.ToDouble(data[0]);

@@ -4,9 +4,10 @@ using System.Diagnostics;
 namespace TestApp
 {
     class Program
-    {
+    {  
         static void Main(string[] args)
         {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             //new Tester(new StringLength(), @"0.String/").RunTest();
             //new Tester(new Tickets(), @"1.Tickets/").RunTest();
 

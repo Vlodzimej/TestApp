@@ -4,7 +4,7 @@ namespace TestApp
 {
     public class PowerC : ITask
     {
-        public string Title { get => "2c. Через двоичное разложение показателя степени"; }
+        public string Title { get => "1c. Через двоичное разложение показателя степен"; }
         public string Run(string[] data)
         {
             var a = Convert.ToDouble(data[0]);
