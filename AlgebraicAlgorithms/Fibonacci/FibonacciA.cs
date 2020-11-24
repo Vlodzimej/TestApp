@@ -4,17 +4,18 @@ namespace TestApp
 {
     public class FibonacciA : ITask
     {
-        public string Title { get => "2a. Через рекурси"; }
+        public string Title { get => "2a. Через рекурсию"; }
         public string Run(string[] data)
         {
-            var n = Convert.ToInt32(data[0]);
+            var n = Convert.ToUInt64(data[0]);
             var result = IncreaseValue(0, 0, n);
             return result.ToString();
         }
 
-        private long IncreaseValue(long a, long b, int n)
+        private ulong IncreaseValue(ulong a, ulong b, ulong n)
         {
-            if (n == 0) {
+            if (n == 0)
+            {
                 return 0;
             }
             if (b == 0)

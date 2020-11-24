@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace TestApp
 {
     class Program
-    {  
+    {
         static void Main(string[] args)
         {
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            //new Tester(new StringLength(), @"0.String/").RunTest();
-            //new Tester(new Tickets(), @"1.Tickets/").RunTest();
+            new Tester(new StringLength(), @"0.String/").RunTest();
+            new Tester(new Tickets(), @"1.Tickets/").RunTest();
 
             new Tester(new PowerA(), @"3.Power/").RunTest();
             new Tester(new PowerB(), @"3.Power/").RunTest();
