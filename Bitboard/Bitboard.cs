@@ -52,34 +52,18 @@ namespace TestApp
             byte[] bottom = { 4, 5, 6 };
             byte[] left = { 6, 7, 8 };
 
-            byte[] directions = { 1, 2, 3, 4, 5, 6, 7, 8 };
             byte[] deniedDirections = { };
 
             /** Нижняя граница */
-            if (this.figY == 0)
-            {
-                deniedDirections = deniedDirections.Concat(bottom);
-            }
-
+            deniedDirections = this.figY == 0 ? deniedDirections.Concat(bottom) : deniedDirections;
             /** Верхняя граница */
-            if (this.figY == 7)
-            {
-                deniedDirections = deniedDirections.Concat(top);
-            }
-
+            deniedDirections = this.figY == 7 ? deniedDirections.Concat(top) : deniedDirections;
             /** Левая граница */
-            if (this.figX == 0)
-            {
-                deniedDirections = deniedDirections.Concat(left);
-            }
-
+            deniedDirections = this.figX == 0 ? deniedDirections.Concat(left) : deniedDirections;
             /** Правая граница */
-            if (this.figX == 7)
-            {
-                deniedDirections = deniedDirections.Concat(right);
-            }
+            deniedDirections = this.figX == 7 ? deniedDirections.Concat(right) : deniedDirections;
 
-            return directions.Except(deniedDirections).ToArray();
+            return new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 }.Except(deniedDirections).ToArray();
         }
 
         /// <summary>
