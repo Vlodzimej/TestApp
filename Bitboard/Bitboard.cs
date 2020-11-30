@@ -1,16 +1,17 @@
 using System;
 using System.Linq;
+using TestApp;
 
-namespace TestApp
+namespace Bits
 {
     public class Bitboard : ITask
     {
         public string Title { get => "Шахматные биты"; }
         ulong[,] Board = new ulong[8, 8];
 
-        int figX, figY;
+        string figureName;
 
-        public Bitboard()
+        public Bitboard(string figureName)
         {
             byte count = 0;
             for (int y = 0; y < 8; y++)
@@ -21,92 +22,37 @@ namespace TestApp
                     count++;
                 }
             }
+            this.figureName = figureName;
         }
 
         public string Run(string[] data)
         {
             /** Получение порядкового номера поля */
             var n = Convert.ToByte(data[0]);
+            Figure figure = new Figure(Board, 0);
 
-            /** Вычисление координат фигуры */
-            this.figY = n / 8;
-            this.figX = n % 8;
-
-            /** Получение возможных направлений движения */
-            var directions = GetDirections();
-            var hash = CalcHash(directions);
-
-            return $"{directions.Length}\r\n{hash}";
-        }
-
-        /// <summary>
-        /// Определние возможных направлений для хода
-        /// </summary>
-        /// <param name="n">Порядковый номер поля</param>
-        /// <returns>Возможные направления для хода</returns>
-        private byte[] GetDirections()
-        {
-            /** Направления, движения в которые недоступных из крайних положений на доске */
-            byte[] top = { 1, 2, 8 };
-            byte[] right = { 2, 3, 4 };
-            byte[] bottom = { 4, 5, 6 };
-            byte[] left = { 6, 7, 8 };
-
-            byte[] deniedDirections = { };
-
-            /** Нижняя граница */
-            deniedDirections = this.figY == 0 ? deniedDirections.Concat(bottom) : deniedDirections;
-            /** Верхняя граница */
-            deniedDirections = this.figY == 7 ? deniedDirections.Concat(top) : deniedDirections;
-            /** Левая граница */
-            deniedDirections = this.figX == 0 ? deniedDirections.Concat(left) : deniedDirections;
-            /** Правая граница */
-            deniedDirections = this.figX == 7 ? deniedDirections.Concat(right) : deniedDirections;
-
-            return new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 }.Except(deniedDirections).ToArray();
-        }
-
-        /// <summary>
-        /// Вычисление суммы возможных для хода полей
-        /// </summary>
-        /// <param name="directions">Возможные направления</param>
-        /// <returns></returns>
-        private ulong CalcHash(byte[] directions)
-        {
-            ulong result = 0;
-            for (int i = 0; i < directions.Length; i++)
+            switch (figureName)
             {
-                switch (directions[i])
-                {
-                    case 1:
-                        result += Board[figX, figY + 1];
-                        break;
-                    case 2:
-                        result += Board[figX + 1, figY + 1];
-                        break;
-                    case 3:
-                        result += Board[figX + 1, figY];
-                        break;
-                    case 4:
-                        result += Board[figX + 1, figY - 1];
-                        break;
-                    case 5:
-                        result += Board[figX, figY - 1];
-                        break;
-                    case 6:
-                        result += Board[figX - 1, figY - 1];
-                        break;
-                    case 7:
-                        result += Board[figX - 1, figY];
-                        break;
-                    case 8:
-                        result += Board[figX - 1, figY + 1];
-                        break;
-                }
+                case "king":
+                    figure = new King(Board, n);
+                    break;
+                case "knight":
+                    figure = new Knight(Board, n);
+                    break;
+                case "castle":
+                    figure = new Castle(Board, n);
+                    break;
+                case "bishop":
+                    figure = new Bishop(Board, n);
+                    break;
+                case "queen":
+                    figure = new Queen(Board, n);
+                    break;
             }
-            return result;
+
+            var hash = figure.CalcHash();
+
+            return $"{figure.MoveCounter}\r\n{hash}";
         }
-
-
     }
 }
