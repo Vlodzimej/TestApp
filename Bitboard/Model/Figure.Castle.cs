@@ -31,7 +31,7 @@ namespace Bits
                 null,
                 () => {
                     ulong result = 0;
-                    for(int y = figY - 1; y > (-1); y--) {
+                    for(int y = figY - 1; y >= 0; y--) {
                         result += board[figX, y];
                         moveCounter++;
                     }
@@ -40,7 +40,7 @@ namespace Bits
                 null,
                 () => {
                     ulong result = 0;
-                    for(int x = figX - 1; x > (-1); x--) {
+                    for(int x = figX - 1; x >= 0; x--) {
                         result += board[x, figY];
                         moveCounter++;
                     }
