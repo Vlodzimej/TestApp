@@ -10,7 +10,7 @@ namespace Bits
         /// </summary>
         /// <value></value>
         public int MoveCounter { get => this.moveCounter; }
-        public int moveCounter;
+        protected int moveCounter;
 
         /// <summary>
         /// Массив доски
