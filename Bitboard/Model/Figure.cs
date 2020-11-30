@@ -37,6 +37,7 @@ namespace Bits
         /// Вычисление суммы всех полей по одному направлению
         /// </summary>
         protected DirectionProcess[] directionProcesses;
+        
         public Figure(ulong[,] board, byte n)
         {
             this.board = board;
