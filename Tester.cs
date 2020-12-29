@@ -9,7 +9,7 @@ namespace TestApp
         ITask task;
         string path;
 
-        public Tester(ITask task, string path)
+        public Tester(ITask task, string path = null)
         {
             this.task = task;
             this.path = path;
@@ -20,21 +20,28 @@ namespace TestApp
             int nr = 0;
             Console.WriteLine($"Test {path} {task.Title}");
 
-            while (true)
+            if (path != null)
             {
-                var exePath = AppDomain.CurrentDomain.BaseDirectory;
+                while (true)
+                {
+                    var exePath = AppDomain.CurrentDomain.BaseDirectory;
 
-                string inFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.in");
-                string outFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.out");
+                    string inFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.in");
+                    string outFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.out");
 
-                if (!File.Exists(inFile) || !File.Exists(outFile))
-                    break;
-                Console.WriteLine($"Test #{nr} - " + RunTest(inFile, outFile));
-                nr++;
+                    if (!File.Exists(inFile) || !File.Exists(outFile))
+                        break;
+                    Console.WriteLine($"Test #{nr} - " + doTest(inFile, outFile));
+                    nr++;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Elapsed time: {doTest()}");
             }
         }
 
-        public string RunTest(string inFile, string outFile)
+        private string doTest(string inFile, string outFile)
         {
             var watch = new Stopwatch();
             try
@@ -50,6 +57,25 @@ namespace TestApp
 
 
                 return $"{(actual == expect)} {watch.ElapsedMilliseconds} ms";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "Failed";
+            }
+        }
+
+        private string doTest()
+        {
+            var watch = new Stopwatch();
+            try
+            {
+                watch.Start();
+                string actual = task.Run(null);
+                watch.Stop();
+
+
+                return $"{watch.ElapsedMilliseconds} ms";
             }
             catch (Exception e)
             {
