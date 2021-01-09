@@ -1,15 +1,16 @@
-using System;
+using System.Collections.Generic;
 
 namespace TestApp.Arrays
 {
-    public class SingleArray<T> : IDynamicArray<T>
+    public class MatrixList<T> : IDynamicArray<T>
     {
-        protected T[] array;
-        private int size { get => this.array.Length; }
+        private int size = 0;
+        private int vector = 100;
+        List<List<T>> matrix;
 
-        public SingleArray()
+        public MatrixList()
         {
-            array = new T[0];
+            matrix = new List<List<T>>();
         }
 
         /// <summary>
@@ -35,13 +36,11 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="index">Индекс элемента</param>
         /// <returns></returns>
-        public virtual T Get(int index)
+        public T Get(int index)
         {
-            T result = default(T);
             try
             {
-                result = array[index];
-                return result;
+                return matrix[index / vector][index % vector];
             }
             catch
             {
@@ -53,7 +52,7 @@ namespace TestApp.Arrays
         /// Добавление элемента в конец массива
         /// </summary>
         /// <param name="item">Новые элемент</param>
-        public virtual void Add(T item)
+        public void Add(T item)
         {
             try
             {
@@ -67,26 +66,32 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="item">Новый элемент</param>
         /// <param name="index">Индекс</param>
-        public virtual void Add(T item, int index)
+        public void Add(T item, int index)
         {
             if (index < 0) return;
+
             try
             {
-                increment();
-                if (index == size - 1)
+                if (size == matrix.Count * vector)
                 {
-                    array[index] = item;
+                    matrix.Add(new List<T>());
+                }
+
+                if (index == size)
+                {
+                    matrix[size / vector].Add(item);
                 }
                 else
                 {
-                    T[] newArray = new T[size + 1];
-
-                    Array.Copy(array, 0, newArray, 0, index);
-                    newArray[index] = item;
-                    Array.Copy(array, index, newArray, index + 1, size - index);
-
-                    array = newArray;
+                    int line = index / vector;
+                    for (int i = matrix.Count - 1; i > line; --i)
+                    {
+                        matrix[i].Insert(0, matrix[i - 1][matrix[i - 1].Count - 1]);
+                        matrix[i - 1].RemoveAt(matrix[i - 1].Count - 1);
+                    }
+                    matrix[line].Insert(index % vector, item);
                 }
+                size++;
             }
             catch { }
         }
@@ -96,39 +101,36 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public virtual T Remove(int index)
+        public T Remove(int index)
         {
-            if (index < 0 || index > size) return default(T);
+            if (index < 0 || index >= size)
+            {
+                return default(T);
+            }
 
             try
             {
-                var removedItem = array[index];
-                T[] newArray = new T[size - 1];
+                int lineIndex = index / vector;
+                T removedItem = matrix[lineIndex][index % vector];
+                matrix[lineIndex].RemoveAt(index % vector);
 
-                Array.Copy(array, 0, newArray, 0, index);
-                Array.Copy(array, index + 1, newArray, index, size - 1 - index);
+                for (int i = lineIndex + 1; i < matrix.Count; ++i)
+                {
+                    matrix[i - 1].Add(matrix[i][0]);
+                    matrix[i].RemoveAt(0);
+                }
 
-                array = newArray;
+                if (matrix[matrix.Count - 1].Count == 0)
+                {
+                    matrix.RemoveAt(matrix.Count - 1);
+                }
+                size--;
                 return removedItem;
             }
             catch
             {
                 return default(T);
             }
-        }
-
-        /// <summary>
-        /// Увеличение массива на 1 элемент
-        /// </summary>
-        private void increment()
-        {
-            try
-            {
-                T[] newArray = new T[size + 1];
-                Array.Copy(array, newArray, size);
-                array = newArray;
-            }
-            catch { }
         }
     }
 }

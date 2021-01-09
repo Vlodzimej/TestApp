@@ -1,18 +1,18 @@
-namespace TestApp.Arrays.Test
+namespace TestApp.Arrays
 {
-    public class AddToStart : ITask
+    public class AddToEnd : ITask
     {
         private IDynamicArray<int> array;
-        public AddToStart(IDynamicArray<int> array)
+        public AddToEnd(IDynamicArray<int> array)
         {
             this.array = array;
         }
-        public string Title { get => "Adding to start"; }
+        public string Title { get => "Adding to end"; }
         public string Run(string[] data)
         {
             for (int j = 0; j < 100000; j++)
             {
-                array.Add(j, 0);
+                array.Add(j + 1);
             }
             return "Ok";
         }

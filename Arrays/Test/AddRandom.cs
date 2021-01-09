@@ -1,6 +1,6 @@
 using System;
 
-namespace TestApp.Arrays.Test
+namespace TestApp.Arrays
 {
     public class AddRandom : ITask
     {
@@ -16,8 +16,8 @@ namespace TestApp.Arrays.Test
 
             for (int j = 0; j < 100000; j++)
             {
-                int index = rnd.Next(0, 100000);
-                array.Add(j, index);
+                int index = rnd.Next(array.Size());
+                array.Add(j + 1, index);
             }
             return "Ok";
         }

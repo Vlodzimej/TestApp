@@ -1,4 +1,4 @@
-namespace TestApp.Arrays.Test
+namespace TestApp.Arrays
 {
     public class RemoveFromStart : ITask
     {

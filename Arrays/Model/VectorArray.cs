@@ -2,32 +2,23 @@ using System;
 
 namespace TestApp.Arrays
 {
-    public class SingleArray<T> : IDynamicArray<T>
+    public class VectorArray<T> : SingleArray<T>
     {
-        protected T[] array;
-        private int size { get => this.array.Length; }
+        private int size = 0;
+        protected int vector = 100;
 
-        public SingleArray()
+        public VectorArray()
         {
-            array = new T[0];
+            array = new T[vector];
         }
 
         /// <summary>
         /// Размер массива
         /// </summary>
         /// <returns></returns>
-        public virtual int Size()
+        public override int Size()
         {
             return size;
-        }
-
-        /// <summary>
-        /// Проверка массива на заполненность
-        /// </summary>
-        /// <returns>Флаг наличия элементов у массива</returns>
-        public bool isEmpty()
-        {
-            return size == 0;
         }
 
         /// <summary>
@@ -35,13 +26,15 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="index">Индекс элемента</param>
         /// <returns></returns>
-        public virtual T Get(int index)
+        public override T Get(int index)
         {
-            T result = default(T);
             try
             {
-                result = array[index];
-                return result;
+                if (index < 0 || index >= size)
+                {
+                    return default(T);
+                }
+                return array[index];
             }
             catch
             {
@@ -53,11 +46,16 @@ namespace TestApp.Arrays
         /// Добавление элемента в конец массива
         /// </summary>
         /// <param name="item">Новые элемент</param>
-        public virtual void Add(T item)
+        public override void Add(T item)
         {
             try
             {
-                Add(item, size);
+                if (size == array.Length)
+                {
+                    increment();
+                }
+                array[size] = item;
+                size++;
             }
             catch { }
         }
@@ -67,19 +65,24 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="item">Новый элемент</param>
         /// <param name="index">Индекс</param>
-        public virtual void Add(T item, int index)
+        public override void Add(T item, int index)
         {
             if (index < 0) return;
+
             try
             {
-                increment();
+                if (size == array.Length)
+                {
+                    increment();
+                }
+
                 if (index == size - 1)
                 {
                     array[index] = item;
                 }
                 else
                 {
-                    T[] newArray = new T[size + 1];
+                    T[] newArray = new T[array.Length];
 
                     Array.Copy(array, 0, newArray, 0, index);
                     newArray[index] = item;
@@ -87,6 +90,7 @@ namespace TestApp.Arrays
 
                     array = newArray;
                 }
+                size++;
             }
             catch { }
         }
@@ -96,19 +100,28 @@ namespace TestApp.Arrays
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public virtual T Remove(int index)
+        public override T Remove(int index)
         {
-            if (index < 0 || index > size) return default(T);
+            if (index < 0 || index >= size)
+            {
+                return default(T);
+            }
 
             try
             {
                 var removedItem = array[index];
-                T[] newArray = new T[size - 1];
+                if (index != size - 1)
+                {
+                    T[] newArray = new T[array.Length];
 
-                Array.Copy(array, 0, newArray, 0, index);
-                Array.Copy(array, index + 1, newArray, index, size - 1 - index);
+                    Array.Copy(array, 0, newArray, 0, index);
+                    Array.Copy(array, index + 1, newArray, index, size - 1 - index);
 
-                array = newArray;
+                    array = newArray;
+                }
+
+                size--;
+
                 return removedItem;
             }
             catch
@@ -118,13 +131,13 @@ namespace TestApp.Arrays
         }
 
         /// <summary>
-        /// Увеличение массива на 1 элемент
-        /// </summary>
+        /// Увеличение массива на значение delta
+        /// </summary>  
         private void increment()
         {
             try
             {
-                T[] newArray = new T[size + 1];
+                T[] newArray = new T[size + vector];
                 Array.Copy(array, newArray, size);
                 array = newArray;
             }

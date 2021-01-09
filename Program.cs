@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using Bits;
 using TestApp.Arrays;
@@ -45,20 +44,7 @@ namespace TestApp
                     new Tester(new Bitboard("queen"), @"0.BITS/5.Bitboard - Queen/").RunTest();
                     break;
                 case "arrays":
-                    Console.WriteLine("Single Array");
-                    SingleArray<int>[] array = { new SingleArray<int>(), new SingleArray<int>(), new SingleArray<int>() };
-
-                    new Tester(new Arrays.Test.AddToEnd(array[0])).RunTest();
-                    new Tester(new Arrays.Test.AddToStart(array[1])).RunTest();
-                    new Tester(new Arrays.Test.AddRandom(array[2])).RunTest();
-
-                    new Tester(new Arrays.Test.GetFromStart(array[0])).RunTest();
-                    new Tester(new Arrays.Test.GetFromEnd(array[1])).RunTest();
-                    new Tester(new Arrays.Test.GetRandom(array[2])).RunTest();
-
-                    new Tester(new Arrays.Test.RemoveFromStart(array[0])).RunTest();
-                    new Tester(new Arrays.Test.RemoveFromEnd(array[1])).RunTest();
-                    new Tester(new Arrays.Test.RemoveRandom(array[2])).RunTest();
+                    Arrays.Test.Run();
                     break;
             }
         }

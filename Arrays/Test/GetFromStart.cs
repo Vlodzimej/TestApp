@@ -1,16 +1,16 @@
-namespace TestApp.Arrays.Test
+namespace TestApp.Arrays
 {
-    public class GetFromEnd : ITask
+    public class GetFromStart : ITask
     {
         private IDynamicArray<int> array;
-        public GetFromEnd(IDynamicArray<int> array)
+        public GetFromStart(IDynamicArray<int> array)
         {
             this.array = array;
         }
-        public string Title { get => "Getting from end"; }
+        public string Title { get => "Getting from start"; }
         public string Run(string[] data)
         {
-            for (int j = 99999; j > (-1); j--)
+            for (int j = 0; j < 100000; j++)
             {
                 var a = array.Get(j);
             }

@@ -1,18 +1,18 @@
-namespace TestApp.Arrays.Test
+namespace TestApp.Arrays
 {
-    public class RemoveFromEnd : ITask
+    public class GetFromEnd : ITask
     {
         private IDynamicArray<int> array;
-        public RemoveFromEnd(IDynamicArray<int> array)
+        public GetFromEnd(IDynamicArray<int> array)
         {
             this.array = array;
         }
-        public string Title { get => "Removing from end"; }
+        public string Title { get => "Getting from end"; }
         public string Run(string[] data)
         {
             for (int j = 99999; j > (-1); j--)
             {
-                array.Remove(j);
+                var a = array.Get(j);
             }
             return "Ok";
         }
