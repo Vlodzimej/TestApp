@@ -48,8 +48,42 @@ namespace TestApp
                     break;
                 case "heapsort":
                     new Tester(new BubbleSort(), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new BubbleSort(), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new BubbleSort(), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new BubbleSort(), @"sorting-tests/3.revers/").RunTest();
+
                     new Tester(new SelectionSort(), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new SelectionSort(), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new SelectionSort(), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new SelectionSort(), @"sorting-tests/3.revers/").RunTest();
+
                     new Tester(new InsertionSort(), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new InsertionSort(), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new InsertionSort(), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new InsertionSort(), @"sorting-tests/3.revers/").RunTest();
+
+                    new Tester(new ShellSort(4), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new ShellSort(4), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new ShellSort(4), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new ShellSort(4), @"sorting-tests/3.revers/").RunTest();
+                    new Tester(new ShellSort(4), @"sorting-tests/3.revers/").RunTest();
+
+                    new Tester(new ShellSort(8), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new ShellSort(8), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new ShellSort(8), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new ShellSort(8), @"sorting-tests/3.revers/").RunTest();
+                    new Tester(new ShellSort(8), @"sorting-tests/3.revers/").RunTest();
+
+                    new Tester(new ShellSort(16), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new ShellSort(16), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new ShellSort(16), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new ShellSort(16), @"sorting-tests/3.revers/").RunTest();
+                    new Tester(new ShellSort(16), @"sorting-tests/3.revers/").RunTest();
+
+                    new Tester(new HeapSort(), @"sorting-tests/0.random/").RunTest();
+                    new Tester(new HeapSort(), @"sorting-tests/1.digits/").RunTest();
+                    new Tester(new HeapSort(), @"sorting-tests/2.sorted/").RunTest();
+                    new Tester(new HeapSort(), @"sorting-tests/3.revers/").RunTest();
                     break;
             }
         }
