@@ -1,15 +1,14 @@
 using System;
 using System.IO;
 
-namespace TestApp.CountingSort
+namespace TestApp.Merge
 {
-    public class SortData
+    public static class Data
     {
-        void CreateFile()
+        public static void CreateFile()
         {
-            string path = @"MyTest.txt";
+            string path = @"MergeSortData.txt";
 
-            // Delete the file if it exists.
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -18,9 +17,12 @@ namespace TestApp.CountingSort
             //Create the file.
             using (FileStream fs = File.Create(path))
             {
-                for (ushort i = 0; i < 65535; i++)
+                for (long i = 0; i < 100; i++)
                 {
-                    AddNumber(fs, i);
+                    var rnd = new Random();
+                    Console.WriteLine($"{i}");
+                    //AddNumber(fs, (ushort)rnd.Next(65535));
+                    AddNumber(fs, 65534); 
                 }
             }
         }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using Bits;
-using TestApp.Arrays;
 
 namespace TestApp
 {
@@ -84,6 +82,10 @@ namespace TestApp
                     new Tester(new HeapSort(), @"sorting-tests/1.digits/").RunTest();
                     new Tester(new HeapSort(), @"sorting-tests/2.sorted/").RunTest();
                     new Tester(new HeapSort(), @"sorting-tests/3.revers/").RunTest();
+                    break;
+                case "countingsort":
+                    Merge.Data.CreateFile();
+                    new Merge.Sort().Run(null);
                     break;
             }
         }
