@@ -21,8 +21,7 @@ namespace TestApp.Merge
                 {
                     var rnd = new Random();
                     Console.WriteLine($"{i}");
-                    //AddNumber(fs, (ushort)rnd.Next(65535));
-                    AddNumber(fs, 65534); 
+                    AddNumber(fs, (ushort)rnd.Next(65535));
                 }
             }
         }

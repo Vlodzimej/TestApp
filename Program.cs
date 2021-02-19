@@ -87,6 +87,10 @@ namespace TestApp
                     Merge.Data.CreateFile();
                     new Merge.Sort().Run(null);
                     break;
+                case "bst":
+                    new BST.Test("random", 15000000).Run();
+                    new BST.Test("increment", 100000).Run();
+                    break;
             }
         }
     }
