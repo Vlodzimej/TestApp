@@ -16,7 +16,7 @@ namespace TestApp.BST
         {
             var rnd = new Random();
 
-            while (tree.count < n)
+            while (tree.Count < n)
             {
                 var numb = (ulong)(rnd.Next((Int32)n) + (rnd.Next((Int32)n)));
                 tree.InsertNode(numb);

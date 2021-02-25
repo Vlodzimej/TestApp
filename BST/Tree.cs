@@ -4,19 +4,20 @@ namespace TestApp.BST
 {
     public class Tree
     {
-        public ulong count = 0;
+        public ulong Count { get; set; }
         Node root;
 
         public Tree(ulong rootKey)
         {
+            Count = 0;
             InsertNode(rootKey);
         }
         public void InsertNode(ulong key)
         {
-            if (count == 0)
+            if (Count == 0)
             {
                 root = new Node(key, null);
-                count++;
+                Count++;
             }
             else
             {
@@ -47,7 +48,7 @@ namespace TestApp.BST
                 if (node.R == null)
                 {
                     node.R = new Node(key, node);
-                    count++;
+                    Count++;
                 }
                 else
                 {
@@ -59,7 +60,7 @@ namespace TestApp.BST
                 if (node.L == null)
                 {
                     node.L = new Node(key, node);
-                    count++;
+                    Count++;
                 }
                 else
                 {

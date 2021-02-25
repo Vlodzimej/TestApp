@@ -12,7 +12,7 @@ namespace TestApp.BST
         public string Title { get => "Random removing"; }
         public string Run(string[] data)
         {
-            var n = tree.count;
+            var n = tree.Count;
             var rnd = new Random();
             for (ulong i = 0; i < n / 10; i++)
             {
