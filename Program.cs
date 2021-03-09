@@ -91,6 +91,9 @@ namespace TestApp
                     new BST.Test("random", 15000000).Run();
                     new BST.Test("increment", 100000).Run();
                     break;
+                case "kosarayu":
+                    var kos = new Kosarayu();
+                    break;
             }
         }
     }
