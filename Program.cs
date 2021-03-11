@@ -94,6 +94,9 @@ namespace TestApp
                 case "kosarayu":
                     var kos = new Kosarayu();
                     break;
+                case "boyermoore":
+                    new Tester(new BoyerMooreHorspool(), @"ab/").RunTest();
+                    break;
             }
         }
     }

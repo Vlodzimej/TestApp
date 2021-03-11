@@ -26,8 +26,8 @@ namespace TestApp
                 {
                     var exePath = AppDomain.CurrentDomain.BaseDirectory;
 
-                    string inFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.in");
-                    string outFile = Path.Combine(exePath, "Tests", $"{path}test.{nr}.out");
+                    string inFile = Path.Combine(exePath, "Tests", $"{path}string.{nr}.in");
+                    string outFile = Path.Combine(exePath, "Tests", $"{path}string.{nr}.out");
 
                     if (!File.Exists(inFile) || !File.Exists(outFile))
                         break;
