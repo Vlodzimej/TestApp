@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Bits;
 
 namespace TestApp
@@ -97,6 +98,14 @@ namespace TestApp
                 case "boyermoore":
                     new Tester(new BoyerMooreHorspool(), @"ab/").RunTest();
                     break;
+                case "ahocorasick":
+                    var words = new string[] { "abc", "bcdc", "cccb", "bcdd", "bbbc", };
+                    var algo = new AhoCorasick(words);
+                    Console.WriteLine(algo.IsStringInBor("bcdd"));
+                    algo.Find("abcdcbcddbbbcccbbbcccbb");
+                    break;
+
+
             }
         }
     }
