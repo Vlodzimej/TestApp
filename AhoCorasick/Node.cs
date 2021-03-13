@@ -12,12 +12,14 @@ namespace TestApp
         public Dictionary<int, int> moves;
         public int parentIndex;
         public char edgeKey;
-        public Node(bool isTerminal = false)
+        public Node(int parentIndex, char key, bool isTerminal = false)
         {
             this.isTerminal = isTerminal;
             this.nextNode = new Dictionary<int, int>();
             this.moves = new Dictionary<int, int>();
             this.suffixLink = null;
+            this.parentIndex = parentIndex;
+            this.edgeKey = key;
         }
     }
 }

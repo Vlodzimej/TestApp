@@ -14,7 +14,7 @@ namespace TestApp
             this.keywords = keywords;
 
             bor = new List<Node>();
-            bor.Add(new Node());
+            bor.Add(new Node(0, default(char)));
 
             patterns = new List<string>();
 
@@ -23,7 +23,7 @@ namespace TestApp
                 AddTemplate(word);
             }
         }
-        //https://habr.com/ru/post/198682/
+
         public void AddTemplate(string str)
         {
             int currentIndex = 0;
@@ -36,7 +36,7 @@ namespace TestApp
 
                 if (!bor.ElementAt(currentIndex).nextNode.ContainsKey(key))
                 {
-                    bor.Add(new Node());
+                    bor.Add(new Node(currentIndex, str[i]));
                     currentNode.nextNode.Add(key, bor.Count() - 1);
                 }
 
@@ -95,7 +95,7 @@ namespace TestApp
         private int getAutoMove(int index, int key)
         {
             var node = bor.ElementAt(index);
-            if (node.moves == null)
+            if (node.moves.Count() == 0)
             {
                 if (node.nextNode.ContainsKey(key))
                 {
@@ -122,7 +122,7 @@ namespace TestApp
 
             if (currentNode.suffixLink == null)
             {
-                var i = getTerminalSuffixLink(index);
+                var i = getSuffixLink(index);
                 if (i == 0)
                 {
                     currentNode.terminalLink = 0;

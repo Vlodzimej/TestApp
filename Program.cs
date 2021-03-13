@@ -99,9 +99,8 @@ namespace TestApp
                     new Tester(new BoyerMooreHorspool(), @"ab/").RunTest();
                     break;
                 case "ahocorasick":
-                    var words = new string[] { "abc", "bcdc", "cccb", "bcdd", "bbbc", };
+                    var words = new string[] { "abcd", "bcdc", "cccb", "bcdd", "bbbc", };
                     var algo = new AhoCorasick(words);
-                    Console.WriteLine(algo.IsStringInBor("bcdd"));
                     algo.Find("abcdcbcddbbbcccbbbcccbb");
                     break;
 
