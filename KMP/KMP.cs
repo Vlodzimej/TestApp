@@ -25,10 +25,6 @@ namespace TestApp
         {
             this.finder = finder;
             this.title = finder.GetType().ToString();
-
-            //FindAutoKMP auto = new FindAutoKMP();
-            //int p = new AutoFinder().Search("ABABABC", "ABABC");
-            //int p = findAuto.Search("aaBaaBaaaBaaBaaaBaaB", "aaBaaaBaaB");
         }
     }
 
@@ -119,7 +115,7 @@ namespace TestApp
                     break;
 
             }
-            return Array.IndexOf(pi, pi.Max());
+            return Array.IndexOf(pi, pi.Max()) - 1;
         }
 
         private int[] CreatePiSlow(string pattern)

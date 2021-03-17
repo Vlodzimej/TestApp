@@ -106,26 +106,42 @@ namespace TestApp
                 case "kmp":
                     Finder finder;
 
-                    // finder = new AutoFinder("aB", true);
-                    // new Tester(new KMP(finder), @"ab/").RunTest();
+                    finder = new AutoFinder("aB", true);
+                    new Tester(new KMP(finder), @"ab/").RunTest();
 
-                    // finder = new AutoFinder("ABCDEFGHIJKLMNOPQRSTUVWXYZ", true);
-                    // new Tester(new KMP(finder), @"az/").RunTest();
+                    finder = new AutoFinder("ABCDEFGHIJKLMNOPQRSTUVWXYZ", true);
+                    new Tester(new KMP(finder), @"az/").RunTest();
 
-                    // finder = new AutoFinder("aB");
-                    // new Tester(new KMP(finder), @"ab/").RunTest();
+                    finder = new AutoFinder("aB");
+                    new Tester(new KMP(finder), @"ab/").RunTest();
 
-                    // finder = new AutoFinder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                    // new Tester(new KMP(finder), @"az/").RunTest();
+                    finder = new AutoFinder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                    new Tester(new KMP(finder), @"az/").RunTest();
 
+                    finder = new AutoFinderKMP("slow", true);
+                    new Tester(new KMP(finder), @"ab/").RunTest();
+
+                    finder = new AutoFinderKMP("slow", true);
+                    new Tester(new KMP(finder), @"az/").RunTest();
+
+                    finder = new AutoFinderKMP("fast", true);
+                    new Tester(new KMP(finder), @"ab/").RunTest();
+
+                    finder = new AutoFinderKMP("fast", true);
+                    new Tester(new KMP(finder), @"az/").RunTest();
 
                     finder = new AutoFinderKMP("slow");
                     new Tester(new KMP(finder), @"ab/").RunTest();
 
-                    //new Tester(new KMP(new AutoFinder("ABCDEFGHIJKLMNOPQRSTUVWXYZ")), @"az/").RunTest();
+                    finder = new AutoFinderKMP("slow");
+                    new Tester(new KMP(finder), @"az/").RunTest();
 
-                    //new Tester(new KMP(new AutoFinderKMP("slow")), @"ab/").RunTest();
-                    // new Tester(new KMP(fastFinder), @"ab/").RunTest();
+                    finder = new AutoFinderKMP("fast");
+                    new Tester(new KMP(finder), @"ab/").RunTest();
+
+                    finder = new AutoFinderKMP("fast");
+                    new Tester(new KMP(finder), @"az/").RunTest();
+
                     break;
 
 
