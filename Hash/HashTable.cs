@@ -6,6 +6,7 @@ namespace TestApp.Hash
 {
     public class HashTable
     {
+        int _maxSize = 256;
         private Dictionary<int, List<Item>> items = null;
 
         public IReadOnlyCollection<KeyValuePair<int, List<Item>>> Items => items?.ToList()?.AsReadOnly();
@@ -27,7 +28,7 @@ namespace TestApp.Hash
                 hashTableItem = items[hash];
                 if (hashTableItem.SingleOrDefault(i => i.Key == item.Key) != null)
                 {
-                    return null;
+                    return;
                 }
 
                 items[hash].Add(item);

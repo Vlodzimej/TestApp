@@ -1,6 +1,6 @@
 using System;
 
-namespace TestApp.HashTable
+namespace TestApp.Hash
 {
     public class Item
     {
