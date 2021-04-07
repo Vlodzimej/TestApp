@@ -1,33 +1,29 @@
 using System.Linq;
+using System;
 
 namespace TestApp
 {
     public class Kosarayu
     {
+        Graph graph;
         public Kosarayu()
         {
-            string graph = "206701900090450805600";
-            int[,] a = GetGraph(graph);
+            var str = Console.ReadLine();
 
-        }
-        private static int[,] GetGraph(string graph)
-        {
-            int n = graph.Count(x => x == '0');
- 
-            int[,] result = new int[n, n];
-            int row = 0;
-            foreach (char c in graph)
+            if (String.IsNullOrEmpty(str))
             {
-                if (c == '0')
-                    row++;
-                else
-                    result[row, c - '1'] = 1;
+                str = "34.03.4.7..3167..";
             }
-            return result;
+
+            graph = new Graph(str);
+            graph.Display();
+            graph.Search();
+
         }
 
-        public void Test() {
-            
+        public void DisplayGraph()
+        {
+
         }
     }
 }
