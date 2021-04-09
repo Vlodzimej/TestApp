@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TestApp
+namespace TestApp.Kosarayu
 {
     public class Graph
     {

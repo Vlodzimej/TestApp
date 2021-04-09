@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Bits;
+using TestApp.TopologicalSort;
 
 namespace TestApp
 {
@@ -92,7 +93,10 @@ namespace TestApp
                     new BST.Test("increment", 100000).Run();
                     break;
                 case "kosarayu":
-                    var kos = new Kosarayu();
+                    var kos = new KosarayuTest();
+                    break;
+                case "demukron":
+                    new DemukronTest();
                     break;
             }
         }

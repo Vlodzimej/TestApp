@@ -5,7 +5,7 @@ namespace TestApp.Arrays
     public class VectorArray<T> : SingleArray<T>
     {
         private int size = 0;
-        protected int vector = 100;
+        protected int vector = 10;
 
         public VectorArray()
         {
@@ -128,6 +128,17 @@ namespace TestApp.Arrays
             {
                 return default(T);
             }
+        }
+
+        public T GetLast()
+        {
+            return Get(size - 1);
+        }
+
+        public T RemoveByValue(T value)
+        {
+            var index = Array.IndexOf(array, value);
+            return Remove(index);
         }
 
         /// <summary>

@@ -1,12 +1,13 @@
 using System.Linq;
 using System;
+using TestApp.Kosarayu;
 
 namespace TestApp
 {
-    public class Kosarayu
+    public class KosarayuTest
     {
         Graph graph;
-        public Kosarayu()
+        public KosarayuTest()
         {
             var str = Console.ReadLine();
 
