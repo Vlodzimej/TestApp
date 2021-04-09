@@ -8,56 +8,61 @@ namespace TestApp.TopologicalSort
     {
         Graph graph;
         int[] columnSums;
-        VectorArray<int> v;
-        VectorArray<VectorArray<int>> level;
+        List<int> v;
+
         public DemukronTest()
         {
             graph = new Graph();
             columnSums = new int[graph.size];
-            v = new VectorArray<int>();
-            level = new VectorArray<VectorArray<int>>();
+            v = new List<int>();
 
-            Run();
+            var level = Run();
         }
 
-        public void Run()
+        public int[][] Run()
         {
-            var l = 0;
+            List<List<int>> level = new List<List<int>>();
+            
             for (var i = 0; i < graph.size; i++)
             {
                 columnSums[i] = getSumColumn(i);
                 v.Add(i);
             }
 
-            while (v.Size() > 0)
+            while (v.Count > 0)
             {
-                level.Add(new VectorArray<int>());
-                var zero = new VectorArray<int>();
+                level.Add(new List<int>());
+                var zero = new List<int>();
 
 
-                for (var i = 0; i < v.Size(); i++)
+                foreach (var u in v)
                 {
-                    var u = v.Get(i);
-
                     if (columnSums[u] == 0)
                     {
                         zero.Add(u);
                     }
                 }
 
-                if (zero.Size() == 0)
+                if (zero.Count == 0)
                 {
                     break;
                 }
 
-                for (var u = 0; u < zero.Size(); u++)
+                foreach (var u in zero)
                 {
-                    level.GetLast().Add(u);
-                    v.RemoveByValue(u);
+                    level.Last().Add(u);
+                    v.Remove(u);
                     calcColumnSums(u);
                 }
-                l++;
             }
+
+            int[][] result = new int[level.Count][];
+            for (var i = 0; i < result.Length; i++)
+            {
+                result[i] = level.ElementAt(i).ToArray();
+            }
+
+            return result;
         }
 
         private int getSumColumn(int x)
@@ -72,12 +77,11 @@ namespace TestApp.TopologicalSort
             return sum;
         }
 
-        private void calcColumnSums(int x)
+        private void calcColumnSums(int y)
         {
-            for (var i = 0; i < v.Size(); i++)
+            foreach (var x in v)
             {
-                var y = v.Get(i);
-                columnSums[y] -= graph.vertexMatrix[x, y];
+                columnSums[x] -= graph.vertexMatrix[x, y];
             }
         }
     }
