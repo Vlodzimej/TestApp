@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Bits;
+using TestApp.MST;
 using TestApp.TopologicalSort;
 
 namespace TestApp
@@ -97,6 +98,18 @@ namespace TestApp
                     break;
                 case "demukron":
                     new DemukronTest();
+                    break;
+                case "mst":
+                    int[,] pattern = {
+                        { 0, 7, 0, 5, 0, 0, 0},
+                        { 7, 0, 8, 9, 7, 0, 0},
+                        { 0, 8, 0, 0, 5, 0, 0},
+                        { 5, 9, 0, 0,15, 6, 0},
+                        { 0, 7, 5,15, 0, 8, 9},
+                        { 0, 0, 0, 6, 8, 0,11},
+                        { 0, 0, 0, 0, 9,11, 0}
+                    };
+                    var result = new KruskalTest(pattern).Run();
                     break;
             }
         }
